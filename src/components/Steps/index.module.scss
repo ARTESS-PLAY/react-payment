@@ -1,0 +1,51 @@
+.steps {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    @media (max-width: 767px) {
+        flex-wrap: wrap;
+        width: 100%;
+        margin-bottom: 44px;
+    }
+}
+
+.step {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 16px;
+    @media (max-width: 767px) {
+        margin-bottom: 16px;
+    }
+    &:nth-last-child(1) {
+        margin-right: 0;
+    }
+    .step__number {
+        color: rgba($color: #0f0f0f, $alpha: 0.4);
+        font-size: 14px;
+        font-weight: 500;
+        margin-right: 8px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #efefef;
+    }
+    .step__title {
+        color: rgba($color: #0f0f0f, $alpha: 0.4);
+        font-size: 14px;
+        font-weight: 500;
+    }
+}
+
+.step_active {
+    .step__number {
+        color: white;
+        background: #0f0f0f;
+    }
+    .step__title {
+        color: rgba($color: #0f0f0f, $alpha: 1);
+    }
+}

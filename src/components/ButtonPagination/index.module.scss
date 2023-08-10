@@ -1,0 +1,48 @@
+.btn_back {
+    width: 108px;
+    height: 42px;
+    margin-right: 12px;
+}
+.btn_next {
+    width: 108px;
+    height: 42px;
+}
+
+.button_pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    @media (max-width: 767px) {
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        bottom: 20px;
+        background-color: white;
+        padding: 18px 14px;
+        z-index: 1010;
+        .btn_back,
+        .btn_next {
+            width: 50%;
+        }
+    }
+}
+
+.button_pagination_end {
+    @media (max-width: 767px) {
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        bottom: 20px;
+        background-color: white;
+        padding: 18px 14px;
+        z-index: 1010;
+    }
+}
+
+.btn_next_end {
+    width: 205px;
+    height: 42px;
+    @media (max-width: 767px) {
+        width: 100%;
+    }
+}

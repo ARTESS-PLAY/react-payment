@@ -1,0 +1,29 @@
+.button {
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button_black {
+    color: #fff;
+    background: #0f0f0f;
+    &:hover {
+        background-color: lighten($color: #0f0f0f, $amount: 10);
+    }
+}
+
+.button_gray {
+    background: #efefef;
+    color: #0f0f0f;
+    &:hover {
+        background-color: darken($color: #efefef, $amount: 10);
+    }
+}

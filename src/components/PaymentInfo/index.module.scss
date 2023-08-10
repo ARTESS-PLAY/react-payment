@@ -1,0 +1,35 @@
+.payment_infos {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: end;
+    margin-left: 40px;
+    @media (max-width: 767px) {
+        margin-left: 0;
+    }
+}
+.payment_info {
+    span {
+        color: #0f0f0f;
+        font-size: 14px;
+        font-weight: 500;
+        opacity: 0.6;
+    }
+    .payment_info__value {
+        margin-left: 12px;
+        opacity: 1;
+        color: #0f0f0f;
+        font-size: 24px;
+        font-weight: 700;
+    }
+}
+
+.payment_infos__wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width: 767px) {
+        width: 100%;
+    }
+}
