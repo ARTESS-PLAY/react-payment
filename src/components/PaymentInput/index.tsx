@@ -16,7 +16,13 @@ function PaymentInput({ value, changeValue, className }: PaymentInputProps) {
 
     return (
         <div className={`${cl['payment_input']} ${className}`}>
-            <Input value={value} changeValue={changeValue} className={cl['payment_input__input']} />
+            <div className={cl['input_wrapp']}>
+                <Input
+                    value={value}
+                    changeValue={changeValue}
+                    className={cl['payment_input__input']}
+                />
+            </div>
 
             <div className={cl['payment_values']}>
                 {payment_values.map((num) => (

@@ -37,7 +37,7 @@ const ModalStep0: React.FC<ModalStep0Props> = ({
                 </div>
             </div>
             <p className={cl['modal_payment__step0__help_text']}>
-                Сумма одного депозита <br />5 ₼ - 1 000 ₼
+                Сумма одного депозита <br />5 ₼ - 1&nbsp;000 ₼
             </p>
 
             <PaymentInput

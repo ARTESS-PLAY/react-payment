@@ -1,6 +1,17 @@
 .payment_input__input {
     width: 100%;
+}
+.input_wrapp {
+    width: 100%;
     margin-bottom: 16px;
+    position: relative;
+    &::after {
+        content: '₼';
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }
 
 .payment_values {
