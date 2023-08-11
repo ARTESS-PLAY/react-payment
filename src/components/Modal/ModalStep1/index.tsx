@@ -32,13 +32,14 @@ const ModalStep1: React.FC<ModalStep1Props> = ({ activePayment, setPayment }) =>
                         activePayment == el.method ? cl['payment__active'] : null
                     }`}
                     onClick={() => setPayment(el.method)}>
-                    {el.img && (
-                        <div className={cl['payment_imgs']}>
-                            <img src="/img/before_payment.png" alt="before_payment" />
-                            <img src={el.img} alt="payment" />
-                        </div>
-                    )}
-                    <p>{el.title}</p>
+                    <div className={cl['payment__content']}>
+                        {el.img && (
+                            <div className={cl['payment_imgs']}>
+                                <img src={el.img} alt="payment" />
+                            </div>
+                        )}
+                        <p>{el.title}</p>
+                    </div>
                 </div>
             ))}
         </div>
