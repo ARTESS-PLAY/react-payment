@@ -2,18 +2,22 @@ import cl from './index.module.scss';
 
 const payments = [
     {
+        img: '/img/icons/credit-card.svg',
         method: 'card',
         title: 'Перевод на карту',
+        isSvg: true,
     },
     {
         method: 'visa',
         title: 'Kapital Bank Visa',
         img: '/img/visa.png',
+        isSvg: false,
     },
     {
         method: 'Mastercard',
         title: 'Kapital Bank Mastercard',
         img: '/img/mastercard.png',
+        isSvg: false,
     },
 ];
 
@@ -35,7 +39,11 @@ const ModalStep1: React.FC<ModalStep1Props> = ({ activePayment, setPayment }) =>
                     <div className={cl['payment__content']}>
                         {el.img && (
                             <div className={cl['payment_imgs']}>
-                                <img src={el.img} alt="payment" />
+                                {el.isSvg ? (
+                                    <div className={cl['payment_svg']}></div>
+                                ) : (
+                                    <img src={el.img} alt="payment" />
+                                )}
                             </div>
                         )}
                         <p>{el.title}</p>
