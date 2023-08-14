@@ -3,13 +3,14 @@ import cl from './index.module.scss';
 interface PaymentInfoProps {
     activeStep: number;
     value: number;
+    order_timestamp: number|undefined
 }
 
-const PaymentInfo: React.FC<PaymentInfoProps> = ({ activeStep, value }) => {
-    const now_time = new Date().toLocaleTimeString().slice(0, -3);
+const PaymentInfo: React.FC<PaymentInfoProps> = ({ activeStep, value, order_timestamp }) => {
+    const now_time = order_timestamp ? (new Date(order_timestamp * 1000).toLocaleTimeString().slice(0, -3)) : null;
     return (
         <div className={cl['payment_infos__wrapper']}>
-            {activeStep == 2 ? (
+            { (activeStep == 2 && now_time) ? (
                 <div className={cl['payment_infos']}>
                     <p className={cl['payment_info']}>
                         <span>Время заявки</span>

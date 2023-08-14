@@ -1,18 +1,19 @@
 import cl from './index.module.scss';
+import {payment_methods} from "../../../helpers/api";
 
 const payments = [
     {
-        method: 'card',
-        title: 'Перевод на карту',
+        method: 'bank_transfer',
+        title: payment_methods.bank_transfer,
     },
     {
         method: 'visa',
-        title: 'Kapital Bank Visa',
+        title: payment_methods.visa,
         img: '/img/visa.png',
     },
     {
-        method: 'Mastercard',
-        title: 'Kapital Bank Mastercard',
+        method: 'mastercard',
+        title: payment_methods.mastercard,
         img: '/img/mastercard.png',
     },
 ];

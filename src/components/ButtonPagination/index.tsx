@@ -7,6 +7,8 @@ interface ButtonPaginationProps {
     handleCloseClick: () => void;
     activeStep: number;
     className?: string;
+    showFinishButton: boolean
+    position: string
 }
 
 const ButtonPagination: React.FC<ButtonPaginationProps> = ({
@@ -15,6 +17,8 @@ const ButtonPagination: React.FC<ButtonPaginationProps> = ({
     handleCloseClick,
     activeStep,
     className,
+    showFinishButton,
+    position
 }) => {
     return (
         <>
@@ -26,12 +30,16 @@ const ButtonPagination: React.FC<ButtonPaginationProps> = ({
                 </div>
             ) : (
                 <div className={`${cl['button_pagination']} ${className}`}>
-                    <Button color="gray" className={cl['btn_back']} onClick={handlePrevClick}>
+                    <Button color="gray" className={cl['btn_back']} onClick={handlePrevClick} style={{
+                        width: (!showFinishButton && position === 'bottom') ? "100%" : null
+                    }}>
                         Назад
                     </Button>
-                    <Button color="black" className={cl['btn_next']} onClick={handleNextClick}>
-                        {activeStep == 2 ? 'Оплатил' : 'Далее'}
-                    </Button>
+                    { showFinishButton && (
+                        <Button color="black" className={cl['btn_next']} onClick={handleNextClick}>
+                            {activeStep == 2 ? 'Оплатил' : 'Далее'}
+                        </Button>
+                    ) }
                 </div>
             )}
         </>

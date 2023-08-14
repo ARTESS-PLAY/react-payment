@@ -6,15 +6,16 @@ interface ButtonProps {
     className?: string;
     children: React.ReactChild;
     onClick?: () => void;
+    style?: object
 }
 
-const Button: FC<ButtonProps> = ({ children, color, className, onClick }) => {
+const Button: FC<ButtonProps> = ({ children, color, className, onClick, style }) => {
     return (
         <button
             className={`${className} ${cl['button']} ${
                 color === 'black' ? cl['button_black'] : cl['button_gray']
             }`}
-            onClick={onClick}>
+            onClick={onClick} style={style}>
             {children}
         </button>
     );

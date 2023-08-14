@@ -1,0 +1,97 @@
+.button-pay {
+    padding: 0 20px;
+    margin-top: 20px;
+    line-height: 50px;
+    width: 100%;
+}
+
+/* default */
+.status {
+    font-size: 20px;
+    /*height: 24px;*/
+    display: flex;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 30px;
+}
+.status-text {
+    line-height: 1.25;
+}
+.status-title:not(:empty) {
+    width: 120px;
+}
+.status-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px 0 0;
+    border-radius: 50%;
+}
+
+/*fake*/
+.status-message.fake {
+    font-family: monospace;
+}
+
+/*disabled*/
+.status-disabled {
+    display: none;
+}
+.status-disabled .status-icon {
+    background-color: #efefef;
+}
+.status-disabled .status-text {
+    color: #efefef;
+}
+
+/*pending*/
+.status-pending .status-icon {
+    background-color: transparent;
+    border: 3px solid grey;
+    border-bottom-color: transparent;
+    animation: status-pending;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+.status-pending .status-text {
+    color: #363636;
+}
+
+@keyframes status-pending {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*success*/
+.status-success .status-icon {
+    background-color: transparent;
+}
+.status-success .status-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.status-success .status-text {
+    color: #000;
+}
+
+/*error*/
+.status-error .status-icon {
+    background-color: #000;
+}
+.status-error .status-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.status-error .status-text {
+    color: #000;
+}
+
