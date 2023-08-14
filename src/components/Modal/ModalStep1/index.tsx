@@ -1,20 +1,24 @@
 import cl from './index.module.scss';
-import {payment_methods} from "../../../helpers/api";
+import { payment_methods } from '../../../helpers/api';
 
 const payments = [
     {
         method: 'bank_transfer',
         title: payment_methods.bank_transfer,
+        img: '/img/icons/credit-card.svg',
+        isSvg: true,
     },
     {
         method: 'visa',
         title: payment_methods.visa,
         img: '/img/visa.png',
+        isSvg: false,
     },
     {
         method: 'mastercard',
         title: payment_methods.mastercard,
         img: '/img/mastercard.png',
+        isSvg: false,
     },
 ];
 
@@ -33,13 +37,18 @@ const ModalStep1: React.FC<ModalStep1Props> = ({ activePayment, setPayment }) =>
                         activePayment == el.method ? cl['payment__active'] : null
                     }`}
                     onClick={() => setPayment(el.method)}>
-                    {el.img && (
-                        <div className={cl['payment_imgs']}>
-                            <img src="/img/before_payment.png" alt="before_payment" />
-                            <img src={el.img} alt="payment" />
-                        </div>
-                    )}
-                    <p>{el.title}</p>
+                    <div className={cl['payment__content']}>
+                        {el.img && (
+                            <div className={cl['payment_imgs']}>
+                                {el.isSvg ? (
+                                    <div className={cl['payment_svg']}></div>
+                                ) : (
+                                    <img src={el.img} alt="payment" />
+                                )}
+                            </div>
+                        )}
+                        <p>{el.title}</p>
+                    </div>
                 </div>
             ))}
         </div>
