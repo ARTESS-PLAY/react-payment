@@ -1,4 +1,6 @@
 
+import {log} from "util";
+
 // @ts-ignore
 window.env = window.env || {
     REACT_APP_API_URL: "http://127.0.0.1:8002/api",
@@ -107,6 +109,7 @@ export const processLink = (order: IResponseOrderDto): WaitLinkInformer|false =>
         }
     })
 
+    console.log('new informer created')
     return {
         link: () => linkStatus,
         payment: () => paymentStatus,
@@ -127,11 +130,12 @@ interface IOrderStatusDto {
     // error?: string
     order_status?: string
 }
-const checkOrderTimeout = 12 * 60 * 1000 // 12min
+const checkOrderTimeout = 10 * 60 * 1000 // 10min
+const checkOrderInterval = 10 * 1000 // 10sec
 const checkOrderStatus = (order: IResponseOrderDto, payment: WaitLinkStage, onUpdate: () => void) => {
     let isActual = true
     let interval: any = null
-    setTimeout(() => isActual = false, checkOrderTimeout) // 12min
+    setTimeout(() => isActual = false, checkOrderTimeout + checkOrderInterval)
 
     payment.status = WaitLinkStatus.Pending
     payment.message = 'Ожидание подтверждения'
@@ -172,7 +176,7 @@ const checkOrderStatus = (order: IResponseOrderDto, payment: WaitLinkStage, onUp
             })
     } // end main()
 
-    interval = setInterval(main, 10000) // every 10sec
+    interval = setInterval(main, checkOrderInterval) // every 10sec
 }
 
 const api_url = (path: string|undefined): string|null => {

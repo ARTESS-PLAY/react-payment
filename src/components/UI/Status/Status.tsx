@@ -21,7 +21,10 @@ export const Status = ({status, title, message, showFakeLink}: StatusProps) => {
                 return
             }
             setFakeLink("Готовим ссылку https://" + getRandomString(7) + "/" + getRandomString(10))
-        }, 75)
+        }, 150)
+        return () => {
+            clearInterval(interval)
+        }
     })
     return (
         <div className={"status status-" + WaitLinkStatus[status].toLowerCase()}>

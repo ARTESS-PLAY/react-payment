@@ -121,7 +121,7 @@ function Modal() {
                                 </div>
                                 <div className={cl['modal_payment__info']}>
                                     <Steps activeStep={step} />
-                                    <PaymentInfo value={valueDeposit} activeStep={step} order_timestamp={order?.order_timestamp} />
+                                    <PaymentInfo value={valueDeposit} key={order?.order_number} activeStep={step} order={order} />
                                 </div>
                                 <div className="modal_payment__main_content">
                                     {step == 1 ? (
