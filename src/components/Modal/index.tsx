@@ -59,8 +59,12 @@ function Modal() {
     };
     const handleCloseClick = () => {
         setIsVisible(false);
-        if (history.back() === undefined) {
-            location.replace(document.referrer)
+        const params = new URLSearchParams(window.location.search)
+        const redirectTo = params.get('redirect_to')
+        if(redirectTo){
+            const el = document.createElement('a')
+            el.href = redirectTo
+            el.click()
         }
     };
 
@@ -118,7 +122,7 @@ function Modal() {
                                         handleCloseClick={handleCloseClick}
                                         handleNextClick={handleNextClick}
                                         handlePrevClick={handlePrevClick}
-                                        showFinishButton={!order?.info.wait_for_link || step < 2}
+                                        showFinishButton={(order && !order.info.wait_for_link) || step < 2}
                                         showPreviousButton={step === 3}
                                         position='top'
                                     />
@@ -173,7 +177,7 @@ function Modal() {
                         handleCloseClick={handleCloseClick}
                         handleNextClick={handleNextClick}
                         handlePrevClick={handlePrevClick}
-                        showFinishButton={!order?.info.wait_for_link || step < 2}
+                        showFinishButton={(order && !order.info.wait_for_link) || step < 2}
                         showPreviousButton={step === 3}
                         position='bottom'
                     />
