@@ -5,7 +5,7 @@ function App() {
     return (
         <div className="App">
             <div className="modal_bg"></div>
-            <Modal></Modal>
+            <Modal key={1}></Modal>
         </div>
     );
 }

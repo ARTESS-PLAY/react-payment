@@ -4,34 +4,31 @@ import {log} from "util";
 // @ts-ignore
 window.env = window.env || {
     REACT_APP_API_URL: "http://127.0.0.1:8002/api",
-    REACT_APP_API_ENDPOINT_CREATE_ORDER: "/order/create",
+    REACT_APP_API_ENDPOINT_GET_PAYMENT_INFO: "/order/payment-info",
     REACT_APP_API_ENDPOINT_CHECK_ORDER_STATUS: "/order/:order_number/check-status",
     REACT_APP_API_ENDPOINT_WAIT_FOR_LINK: "/order/wait-link",
 }
 
+export interface IPaymentInfo {
+    wait_for_link: boolean
+    order_timestamp: number
+    card_number?: string
+    amount: number
+}
 export interface IResponseOrderDto {
     success: boolean
-    message?: string
     error?: string
     order_number?: string
-    card?: string
-    order_timestamp?: number
-    wait_for_link?: boolean
+    info: IPaymentInfo
 }
 
-interface ICreateOrderDto {
-    shop_public_key: string
-    amount: number
-    payment_method: string
-    payload: string
+interface IProcessOrderDto {
+    order_number: string
 }
-export const createOrder = (dto: ICreateOrderDto): Promise<IResponseOrderDto|null> => {
+export const processOrder = ({order_number}: IProcessOrderDto): Promise<IResponseOrderDto|null> => {
     return new Promise(resolve => {
         // @ts-ignore
-        fetch(api_url(api_routes.create_order), {
-            method: "POST",
-            body: JSON.stringify(dto),
-        })
+        fetch(api_url(api_routes.get_payment_info) + "?order_number=" + order_number)
             .then(res => res.json())
             .then((res: IResponseOrderDto|null) => resolve(res))
             .catch(() => resolve(null))
@@ -56,7 +53,7 @@ export interface WaitLinkInformer {
     onStartPayment: () => void
 }
 export const processLink = (order: IResponseOrderDto): WaitLinkInformer|false => {
-    if(!order?.wait_for_link){
+    if(!order?.info.wait_for_link){
         return false
     }
 
@@ -107,7 +104,7 @@ export const processLink = (order: IResponseOrderDto): WaitLinkInformer|false =>
             linkStatus.message = "Ошибка при создании ссылки на оплату"
             onUpdate()
         }
-    })
+    }, 2000)
 
     console.log('new informer created')
     return {
@@ -189,7 +186,7 @@ const api_url = (path: string|undefined): string|null => {
 
 export const api_routes = {
     //@ts-ignore
-    create_order: window.env.REACT_APP_API_ENDPOINT_CREATE_ORDER,
+    get_payment_info: window.env.REACT_APP_API_ENDPOINT_GET_PAYMENT_INFO,
     //@ts-ignore
     check_status: window.env.REACT_APP_API_ENDPOINT_CHECK_ORDER_STATUS,
     //@ts-ignore

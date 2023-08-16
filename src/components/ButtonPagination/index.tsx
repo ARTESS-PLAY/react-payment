@@ -8,6 +8,7 @@ interface ButtonPaginationProps {
     activeStep: number;
     className?: string;
     showFinishButton: boolean
+    showPreviousButton: boolean
     position: string
 }
 
@@ -18,6 +19,7 @@ const ButtonPagination: React.FC<ButtonPaginationProps> = ({
     activeStep,
     className,
     showFinishButton,
+    showPreviousButton,
     position
 }) => {
     return (
@@ -29,18 +31,31 @@ const ButtonPagination: React.FC<ButtonPaginationProps> = ({
                     </Button>
                 </div>
             ) : (
-                <div className={`${cl['button_pagination']} ${className}`}>
-                    <Button color="gray" className={cl['btn_back']} onClick={handlePrevClick} style={{
-                        width: (!showFinishButton && position === 'bottom') ? "100%" : null
-                    }}>
-                        Назад
-                    </Button>
-                    { showFinishButton && (
-                        <Button color="black" className={cl['btn_next']} onClick={handleNextClick}>
-                            {activeStep == 2 ? 'Оплатил' : 'Далее'}
-                        </Button>
-                    ) }
-                </div>
+                activeStep <= 1 ? (
+                    <div className={`${cl['button_pagination']} ${className}`}>
+                        { showFinishButton && (
+                            <Button color="black" className={cl['btn_next']} onClick={handleNextClick}>
+                                {activeStep == 2 ? 'Оплатил' : 'Далее'}
+                            </Button>
+                        ) }
+                    </div>
+                ) : (
+                    <div className={`${cl['button_pagination']} ${className}`}>
+                        { showPreviousButton && (
+                            <Button color="gray" className={cl['btn_back']} onClick={handlePrevClick} style={{
+                                width: (!showFinishButton && position === 'bottom') ? "100%" : null
+                            }}>
+                                Назад
+                            </Button>
+                        ) }
+                        { showFinishButton && (
+                            <Button color="black" className={cl['btn_next']} onClick={handleNextClick}>
+                                {activeStep == 2 ? 'Оплатил' : 'Далее'}
+                            </Button>
+                        ) }
+                    </div>
+                )
+
             )}
         </>
     );
