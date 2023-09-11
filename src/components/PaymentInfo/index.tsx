@@ -41,7 +41,8 @@ const PaymentInfo: React.FC<PaymentInfoProps> = ({ activeStep, value, order }) =
             { (activeStep == 2 && timer) ? (
                 <div className={cl['payment_infos']}>
                     <p className={cl['payment_info']}>
-                        <span>Время заявки</span>
+                        {/*Время заявки*/}
+                        <span>Sorğu müddəti</span>
                         <span className={cl['payment_info__value']}>{timer}</span>
                     </p>
                 </div>
@@ -50,7 +51,8 @@ const PaymentInfo: React.FC<PaymentInfoProps> = ({ activeStep, value, order }) =
             {value && (
                 <div className={cl['payment_infos']}>
                     <p className={cl['payment_info']}>
-                        <span>Сумма</span>
+                        {/*Сумма*/}
+                        <span>məbləğ</span>
                         <span className={cl['payment_info__value']}>{value}&nbsp;₼</span>
                     </p>
                 </div>

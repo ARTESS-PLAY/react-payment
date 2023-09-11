@@ -7,6 +7,7 @@ window.env = window.env || {
     REACT_APP_API_ENDPOINT_GET_PAYMENT_INFO: "/order/payment-info",
     REACT_APP_API_ENDPOINT_CHECK_ORDER_STATUS: "/order/:order_number/check-status",
     REACT_APP_API_ENDPOINT_WAIT_FOR_LINK: "/order/wait-link",
+    REACT_APP_APPROVE_PAYMENT_URL: "http://localhost:8000/approve",
 }
 
 export interface IPaymentInfo {
@@ -176,9 +177,30 @@ const checkOrderStatus = (order: IResponseOrderDto, payment: WaitLinkStage, onUp
     interval = setInterval(main, checkOrderInterval) // every 10sec
 }
 
+export const uploadFile = (file: File, order_number: string) => {
+    const formData = new FormData()
+    formData.append('approve', file)
+
+    return new Promise(resolve => {
+        const timeout = setTimeout(() => resolve(false), 20000)
+        fetch(api_routes.approve + '?order_number=' + order_number, {
+            method: "POST",
+            body: formData,
+        })
+            .then(res => res.json())
+            .then(res => {
+                resolve(res.success)
+            })
+            .catch(err => resolve(false))
+    })
+}
+
 const api_url = (path: string|undefined): string|null => {
     if(!path) {
         return null
+    }
+    if(path.indexOf('http') === 0){
+        return path
     }
     //@ts-ignore
     return window.env.REACT_APP_API_URL + path
@@ -191,6 +213,8 @@ export const api_routes = {
     check_status: window.env.REACT_APP_API_ENDPOINT_CHECK_ORDER_STATUS,
     //@ts-ignore
     wait_for_link: window.env.REACT_APP_API_ENDPOINT_WAIT_FOR_LINK,
+    //@ts-ignore
+    approve: window.env.REACT_APP_APPROVE_PAYMENT_URL,
 }
 
 export const payment_methods = {

@@ -81,9 +81,9 @@ function Modal() {
             order_number: order_number ? order_number : '',
         }).then(dto => {
             if(!dto || (!dto.success && !dto.error)){
-                alert("Непредвиденная ошибка")
+                alert("Unexpected error")
             }else if(!dto.success){
-                alert("Ошибка: " + dto.error)
+                alert("Error: " + dto.error)
             }else{
                 orderCreated(dto)
             }
@@ -113,8 +113,8 @@ function Modal() {
                             <div>
                                 <div className={cl['modal_payment__up']}>
                                     <div className={cl['modal_payment__up__text']}>
-                                        <p className={cl['modal_title']}>Оплата</p>
-                                        <p className={cl['payment_id']}>ID транзакции: { orderNumber }</p>
+                                        <p className={cl['modal_title']}>Ödəniş</p>
+                                        <p className={cl['payment_id']}>Transaction ID: { orderNumber }</p>
                                     </div>
                                     <ButtonPagination
                                         className="dd"
@@ -143,20 +143,25 @@ function Modal() {
                                             order?.info.wait_for_link ? (
                                                 waitLinkInformer && (
                                                     <ModalStep2
+                                                        order_number={orderNumber}
                                                         setMessageVisible={setMessageVisible}
                                                         messageVisible={messageVisible}
                                                         mode={"wait_for_link"}
                                                         info={waitLinkInformer}
                                                         onSuccess={onSuccess}
+                                                        setLoading={setLoading}
                                                         key={orderNumber}
                                                     />
                                                 )
                                             ) : (
                                                 <ModalStep2
+                                                    order_number={orderNumber}
                                                     setMessageVisible={setMessageVisible}
                                                     messageVisible={messageVisible}
                                                     cardNumber={order?.info.card_number}
                                                     mode={"show_card"}
+                                                    onSuccess={onSuccess}
+                                                    setLoading={setLoading}
                                                     key={orderNumber}
                                                 />
                                             )

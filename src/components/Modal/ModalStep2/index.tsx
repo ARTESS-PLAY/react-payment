@@ -7,14 +7,16 @@ import {WaitLinkInformer} from "../../../helpers/api";
 import {LinkWaiter} from "./LinkWaiter";
 
 type ModalStep2Props = {
+    order_number: string
     messageVisible: boolean;
-    setMessageVisible: React.Dispatch<React.SetStateAction<boolean>>;
+    setMessageVisible: React.Dispatch<React.SetStateAction<boolean>>
+    setLoading: (loading: boolean) => void
+    onSuccess: () => void
 } & (ModalStep2Props_WaitLink | ModalStep2Props_ShowCard)
 
 interface ModalStep2Props_WaitLink {
     mode: "wait_for_link"
     info: WaitLinkInformer
-    onSuccess: () => void
 }
 interface ModalStep2Props_ShowCard {
     mode: "show_card"
@@ -65,13 +67,13 @@ const ModalStep2: React.FC<ModalStep2Props> = (props: ModalStep2Props) => {
                 ) : (
                     <>
                         <p className={cl['modal_payment__step2__up__title']}>
-                            ВСЕГДА ПРОВЕРЯЙТЕ НОМЕР КАРТЫ
+                            Qeyd olunan kart nömrəsinə diqqət edin
                         </p>
                         <div className={cl['modal_payment__step2__up__content']}>
                             <div className={cl['modal_payment__step2__up__content__left']}>
                                 <div className={cl['adress']}>
                                     <div className={cl['adress__up']}>
-                                        <p>Адрес</p>
+                                        <p>kartı nömrəsi{/*Адрес*/}</p>
                                         <div className={cl['adress__copy']} onClick={handleCopyClick}>
                                             <img src="/img/icons/copy.svg" alt="copy" />
                                         </div>
@@ -84,14 +86,17 @@ const ModalStep2: React.FC<ModalStep2Props> = (props: ModalStep2Props) => {
                                         unmountOnExit
                                         classNames="fade">
                                         <p className={cl['adress__copy_done']} ref={copyRef}>
-                                            Скопировано!
+                                            Kopyalandı!{/*Скопировано!*/}
                                         </p>
                                     </CSSTransition>
                                 </div>
                             </div>
                             <div className={cl['modal_payment__step2__up__content__right']}>
-                                <p>Подтверждение перевода</p>
+                                <p>Qəbzi yükləyin{/*Подтверждение перевода*/}</p>
                                 <FileInput
+                                    setLoading={props.setLoading}
+                                    onSuccess={props.onSuccess}
+                                    order_number={props.order_number}
                                     className={cl['modal_payment__step2__up__content__right__input']}
                                 />
                             </div>
@@ -107,7 +112,7 @@ const ModalStep2: React.FC<ModalStep2Props> = (props: ModalStep2Props) => {
                 classNames="fade">
                 <div className={cl['modal_payment__step2__down']} ref={messageRef}>
                     <div className={cl['modal_payment__step2__down__up']}>
-                        <p className={cl['modal_payment__step2__down__up__title']}>Правила</p>
+                        <p className={cl['modal_payment__step2__down__up__title']}>Qaydalar{/*Правила*/}</p>
                         <div
                             className={cl['modal_payment__step2__down__up__close']}
                             onClick={() => props.setMessageVisible((prev) => !prev)}>
@@ -115,13 +120,7 @@ const ModalStep2: React.FC<ModalStep2Props> = (props: ModalStep2Props) => {
                         </div>
                     </div>
                     <p className={cl['modal_payment__step2__down__content']}>
-                        Товарищи! дальнейшее развитие различных форм деятельности играет важную роль
-                        в формировании модели развития. Не&nbsp;следует, однако забывать, что
-                        дальнейшее развитие различных форм деятельности играет важную роль
-                        в&nbsp;формировании направлений прогрессивного развития. Идейные соображения
-                        высшего порядка, а также укрепление и&nbsp;развитие структуры требуют
-                        определения и&nbsp;уточнения системы обучения кадров, соответствует насущным
-                        потребностям.
+                        Pulu göndərmək üçün sizin 10 dəq vaxdınız var,qeyd olunan  kart nömrəsinə diqqət edin və qəbzi yükləyin sonra “ödənilmişdir” sözünə basın. Hər hansı problem yaşanarsan dəstək xidmətinə yazın.
                     </p>
                 </div>
             </CSSTransition>

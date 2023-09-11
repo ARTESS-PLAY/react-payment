@@ -27,7 +27,7 @@ const ButtonPagination: React.FC<ButtonPaginationProps> = ({
             {activeStep == 3 ? (
                 <div className={`${cl['button_pagination_end']} ${className}`}>
                     <Button color="black" className={cl['btn_next_end']} onClick={handleCloseClick}>
-                        Вернуться на сайт
+                        Sayta qayıt {/*Вернуться на сайт*/}
                     </Button>
                 </div>
             ) : (
@@ -50,7 +50,8 @@ const ButtonPagination: React.FC<ButtonPaginationProps> = ({
                         ) }
                         { showFinishButton && (
                             <Button color="black" className={cl['btn_next']} onClick={handleNextClick}>
-                                {activeStep == 2 ? 'Оплатил' : 'Далее'}
+                                {activeStep == 2 ? 'Ödənilmişdir' : 'Далее'}
+                                {/*Оплатил | Далее*/}
                             </Button>
                         ) }
                     </div>
