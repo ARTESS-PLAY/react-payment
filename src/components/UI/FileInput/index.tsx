@@ -1,6 +1,7 @@
 import { useId, useState } from 'react';
 import cl from './index.module.scss';
 import {api_routes, uploadFile} from "../../../helpers/api";
+import {Translate} from "../../../helpers/language";
 
 interface FileInputProps {
     className?: string;
@@ -48,8 +49,7 @@ const FileInput: React.FC<FileInputProps> = ({ className, handleFile, order_numb
                         <span>
                             <img src="/img/icons/download.svg" alt="upload" />
                         </span>
-                        {/*Загрузить файл*/}
-                        Qəbz yükləmək üçün yer
+                        {Translate.upload_file}
                     </p>
                 )}
             </label>

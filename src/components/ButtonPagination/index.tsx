@@ -1,5 +1,6 @@
 import Button from '../UI/Button/Index';
 import cl from './index.module.scss';
+import {Translate} from "../../helpers/language";
 
 interface ButtonPaginationProps {
     handleNextClick: () => void;
@@ -27,7 +28,7 @@ const ButtonPagination: React.FC<ButtonPaginationProps> = ({
             {activeStep == 3 ? (
                 <div className={`${cl['button_pagination_end']} ${className}`}>
                     <Button color="black" className={cl['btn_next_end']} onClick={handleCloseClick}>
-                        Sayta qayıt {/*Вернуться на сайт*/}
+                        {Translate.return_to_shop}
                     </Button>
                 </div>
             ) : (
@@ -35,7 +36,7 @@ const ButtonPagination: React.FC<ButtonPaginationProps> = ({
                     <div className={`${cl['button_pagination']} ${className}`}>
                         { showFinishButton && (
                             <Button color="black" className={cl['btn_next']} onClick={handleNextClick}>
-                                {activeStep == 2 ? 'Оплатил' : 'Далее'}
+                                {activeStep == 2 ? Translate.i_have_paid : Translate.continue}
                             </Button>
                         ) }
                     </div>
@@ -50,8 +51,7 @@ const ButtonPagination: React.FC<ButtonPaginationProps> = ({
                         ) }
                         { showFinishButton && (
                             <Button color="black" className={cl['btn_next']} onClick={handleNextClick}>
-                                {activeStep == 2 ? 'Ödənilmişdir' : 'Далее'}
-                                {/*Оплатил | Далее*/}
+                                {activeStep == 2 ? Translate.i_have_paid : Translate.continue}
                             </Button>
                         ) }
                     </div>

@@ -5,6 +5,7 @@ import cl from './index.module.scss';
 import FileInput from '../../UI/FileInput';
 import {WaitLinkInformer} from "../../../helpers/api";
 import {LinkWaiter} from "./LinkWaiter";
+import {Translate} from "../../../helpers/language";
 
 type ModalStep2Props = {
     order_number: string
@@ -67,13 +68,13 @@ const ModalStep2: React.FC<ModalStep2Props> = (props: ModalStep2Props) => {
                 ) : (
                     <>
                         <p className={cl['modal_payment__step2__up__title']}>
-                            Qeyd olunan kart nömrəsinə diqqət edin
+                            {Translate.check_card_number}
                         </p>
                         <div className={cl['modal_payment__step2__up__content']}>
                             <div className={cl['modal_payment__step2__up__content__left']}>
                                 <div className={cl['adress']}>
                                     <div className={cl['adress__up']}>
-                                        <p>kartı nömrəsi{/*Адрес*/}</p>
+                                        <p>{Translate.card_number}</p>
                                         <div className={cl['adress__copy']} onClick={handleCopyClick}>
                                             <img src="/img/icons/copy.svg" alt="copy" />
                                         </div>
@@ -86,13 +87,13 @@ const ModalStep2: React.FC<ModalStep2Props> = (props: ModalStep2Props) => {
                                         unmountOnExit
                                         classNames="fade">
                                         <p className={cl['adress__copy_done']} ref={copyRef}>
-                                            Kopyalandı!{/*Скопировано!*/}
+                                            {Translate.copied}
                                         </p>
                                     </CSSTransition>
                                 </div>
                             </div>
                             <div className={cl['modal_payment__step2__up__content__right']}>
-                                <p>Qəbzi yükləyin{/*Подтверждение перевода*/}</p>
+                                <p>{Translate.confirmation}</p>
                                 <FileInput
                                     setLoading={props.setLoading}
                                     onSuccess={props.onSuccess}
@@ -112,7 +113,7 @@ const ModalStep2: React.FC<ModalStep2Props> = (props: ModalStep2Props) => {
                 classNames="fade">
                 <div className={cl['modal_payment__step2__down']} ref={messageRef}>
                     <div className={cl['modal_payment__step2__down__up']}>
-                        <p className={cl['modal_payment__step2__down__up__title']}>Qaydalar{/*Правила*/}</p>
+                        <p className={cl['modal_payment__step2__down__up__title']}>{Translate.rules}</p>
                         <div
                             className={cl['modal_payment__step2__down__up__close']}
                             onClick={() => props.setMessageVisible((prev) => !prev)}>
@@ -120,7 +121,7 @@ const ModalStep2: React.FC<ModalStep2Props> = (props: ModalStep2Props) => {
                         </div>
                     </div>
                     <p className={cl['modal_payment__step2__down__content']}>
-                        Pulu göndərmək üçün sizin 10 dəq vaxdınız var,qeyd olunan  kart nömrəsinə diqqət edin və qəbzi yükləyin sonra “ödənilmişdir” sözünə basın. Hər hansı problem yaşanarsan dəstək xidmətinə yazın.
+                        {Translate.rules_text}
                     </p>
                 </div>
             </CSSTransition>

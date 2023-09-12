@@ -1,6 +1,7 @@
 import cl from './index.module.scss';
 import {useEffect, useState} from "react";
 import {IResponseOrderDto} from "../../helpers/api";
+import {Translate} from "../../helpers/language";
 
 interface PaymentInfoProps {
     activeStep: number;
@@ -41,8 +42,7 @@ const PaymentInfo: React.FC<PaymentInfoProps> = ({ activeStep, value, order }) =
             { (activeStep == 2 && timer) ? (
                 <div className={cl['payment_infos']}>
                     <p className={cl['payment_info']}>
-                        {/*Время заявки*/}
-                        <span>Sorğu müddəti</span>
+                        <span>{Translate.time_remain}</span>
                         <span className={cl['payment_info__value']}>{timer}</span>
                     </p>
                 </div>
@@ -51,8 +51,7 @@ const PaymentInfo: React.FC<PaymentInfoProps> = ({ activeStep, value, order }) =
             {value && (
                 <div className={cl['payment_infos']}>
                     <p className={cl['payment_info']}>
-                        {/*Сумма*/}
-                        <span>məbləğ</span>
+                        <span>{Translate.amount}</span>
                         <span className={cl['payment_info__value']}>{value}&nbsp;₼</span>
                     </p>
                 </div>

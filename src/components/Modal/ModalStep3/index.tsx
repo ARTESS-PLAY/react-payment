@@ -1,4 +1,5 @@
 import cl from './index.module.scss';
+import {__, Translate} from "../../../helpers/language";
 
 interface ModalStep3Props {
     success: boolean
@@ -19,14 +20,13 @@ const ModalStep3 = ({success}: ModalStep3Props) => {
                     <div className={cl['modal_payment__step3__round']}>
                         <img src="/img/clock.png" alt="processing" />
                     </div>
-                    {/*Транзакция обрабатывается*/}
-                    <p>Sorğunuza baxılır</p>
+                    <p>{Translate.transaction_is_processing}</p>
                     <p style={{
                         fontSize: '16px',
                         marginTop: '10px',
                         color: '#acaaaa',
                         fontWeight: '400',
-                    }}>Sorğunuza baxıldıqdan sonra ödənişiniz balansınıza yüklənəcək</p> {/*Ваш баланс пополнится автоматически по окончании транзакции*/}
+                    }}>{Translate.balance_will_increase_after_transaction}</p>
                 </>
             ) }
         </div>

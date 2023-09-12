@@ -9,6 +9,7 @@ import PaymentInfo from '../PaymentInfo';
 import ModalStep2 from './ModalStep2';
 import ModalStep3 from './ModalStep3';
 import {processOrder, IResponseOrderDto, payment_methods, processLink, WaitLinkInformer} from "../../helpers/api";
+import {__, Translate} from "../../helpers/language";
 
 function Modal() {
     const [isVisible, setIsVisible] = useState<boolean>(true);
@@ -113,8 +114,8 @@ function Modal() {
                             <div>
                                 <div className={cl['modal_payment__up']}>
                                     <div className={cl['modal_payment__up__text']}>
-                                        <p className={cl['modal_title']}>Ödəniş</p>
-                                        <p className={cl['payment_id']}>Transaction ID: { orderNumber }</p>
+                                        <p className={cl['modal_title']}>{Translate.payment}</p>
+                                        <p className={cl['payment_id']}>{Translate.transaction_id}: { orderNumber }</p>
                                     </div>
                                     <ButtonPagination
                                         className="dd"
